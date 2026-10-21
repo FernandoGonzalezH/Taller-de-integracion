@@ -103,11 +103,12 @@ public function guardarEmpleado($d) {
     $porcentaje = ($tipo !== "vendedor" && $porcentajeIngresado === "")
         ? 0
         : filter_var($porcentajeIngresado === "" ? 0 : $porcentajeIngresado, FILTER_VALIDATE_FLOAT);
-    if (trim($persona["nombre"]) === "" || trim($persona["apellido"]) === "" || ($persona["email"] !== "" && filter_var($persona["email"], FILTER_VALIDATE_EMAIL) === false) || $sueldo === false || $sueldo < 0 || $porcentaje === false || $porcentaje < 0 || $porcentaje > 100 || !in_array($tipo, ["otro", "vendedor"], true)) {
+    $area = trim((string)($d["area"] ?? "")); $rol = trim((string)($d["rol"] ?? ""));
+    if (trim($persona["nombre"]) === "" || trim($persona["apellido"]) === "" || ($persona["email"] !== "" && filter_var($persona["email"], FILTER_VALIDATE_EMAIL) === false) || $sueldo === false || $sueldo < 0 || $porcentaje === false || $porcentaje < 0 || $porcentaje > 100 || !in_array($tipo, ["otro", "vendedor"], true) || !in_array($area, ["Ventas", "Administrativa", "Contable", "Legal"], true) || $rol === "") {
         $conexion->close();
-        throw new InvalidArgumentException("Ingresá nombre y apellido, un correo válido y valores válidos de sueldo, porcentaje y tipo.");
+        throw new InvalidArgumentException("Ingresá nombre y apellido, seleccioná un área, indicá el puesto y verificá el correo, sueldo, porcentaje y tipo.");
     }
-    $area = (string)($d["area"] ?? ""); $rol = (string)($d["rol"] ?? ""); $ingreso = (string)($d["ingreso"] ?? "");
+    $ingreso = (string)($d["ingreso"] ?? "");
     $conexion->begin_transaction();
     try {
         $stmt = $conexion->prepare("INSERT INTO personas (nombre, apellido, dni, nacimiento, localidad, direccion, telefono, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -146,11 +147,12 @@ public function editarEmpleado($d) {
         : filter_var($porcentajeIngresado === "" ? 0 : $porcentajeIngresado, FILTER_VALIDATE_FLOAT);
     $persona = [];
     foreach (["nombre", "apellido", "dni", "nacimiento", "localidad", "direccion", "telefono", "email"] as $campo) $persona[$campo] = (string)($d[$campo] ?? "");
-    if (!$legajo || trim($persona["nombre"]) === "" || trim($persona["apellido"]) === "" || ($persona["email"] !== "" && filter_var($persona["email"], FILTER_VALIDATE_EMAIL) === false) || $sueldo === false || $sueldo < 0 || $porcentaje === false || $porcentaje < 0 || $porcentaje > 100 || !in_array($tipo, ["otro", "vendedor"], true)) {
+    $area = trim((string)($d["area"] ?? "")); $rol = trim((string)($d["rol"] ?? ""));
+    if (!$legajo || trim($persona["nombre"]) === "" || trim($persona["apellido"]) === "" || ($persona["email"] !== "" && filter_var($persona["email"], FILTER_VALIDATE_EMAIL) === false) || $sueldo === false || $sueldo < 0 || $porcentaje === false || $porcentaje < 0 || $porcentaje > 100 || !in_array($tipo, ["otro", "vendedor"], true) || !in_array($area, ["Ventas", "Administrativa", "Contable", "Legal"], true) || $rol === "") {
         $conexion->close();
-        throw new InvalidArgumentException("Ingresá nombre y apellido, un correo válido y valores válidos de legajo, sueldo, porcentaje y tipo.");
+        throw new InvalidArgumentException("Ingresá nombre y apellido, seleccioná un área, indicá el puesto y verificá el correo, legajo, sueldo, porcentaje y tipo.");
     }
-    $area = (string)($d["area"] ?? ""); $rol = (string)($d["rol"] ?? ""); $ingreso = (string)($d["ingreso"] ?? "");
+    $ingreso = (string)($d["ingreso"] ?? "");
     $conexion->begin_transaction();
     try {
         $stmt = $conexion->prepare("UPDATE personas p JOIN empleados e ON e.id_persona = p.id_persona SET p.nombre=?, p.apellido=?, p.dni=?, p.nacimiento=?, p.localidad=?, p.direccion=?, p.telefono=?, p.email=? WHERE e.legajo=?");

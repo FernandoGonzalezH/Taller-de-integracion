@@ -436,6 +436,7 @@ function limpiarFormulario() {
     let inputs = document.querySelectorAll("#modalEmpleado input");
 
     inputs.forEach(i => i.value = "");
+    document.getElementById("area").value = "";
 
     establecerVendedor(false);
 }
@@ -548,7 +549,16 @@ function editarEmpleado(emp) {
 
     // EMPLEADO
     document.getElementById("sueldo").value = emp.sueldo || "";
-    document.getElementById("area").value = emp.area || "";
+    const areasValidas = ["Ventas", "Administrativa", "Contable", "Legal"];
+    let areaEmpleado = emp.area || "";
+    if (!areasValidas.includes(areaEmpleado)) {
+        const rolNormalizado = String(emp.rol || "").toLocaleLowerCase("es");
+        if (rolNormalizado.includes("venta") || rolNormalizado.includes("telemarketing")) areaEmpleado = "Ventas";
+        else if (rolNormalizado.includes("contab")) areaEmpleado = "Contable";
+        else if (rolNormalizado.includes("legal") || rolNormalizado.includes("abog")) areaEmpleado = "Legal";
+        else areaEmpleado = "Administrativa";
+    }
+    document.getElementById("area").value = areaEmpleado;
     document.getElementById("rol").value = emp.rol || "";
     document.getElementById("ingreso").value = emp.ingreso || "";
 
@@ -569,6 +579,7 @@ function editarEmpleado(emp) {
 function limpiarFormulario() {
 
     document.querySelectorAll("#modalEmpleado input").forEach(i => i.value = "");
+    document.getElementById("area").value = "";
 
     establecerVendedor(false);
 }

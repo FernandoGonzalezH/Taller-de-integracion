@@ -96,8 +96,14 @@ $_SESSION["ultima_actividad"] = time();
         <!-- EMPLEADO -->
         <div class="form-grid">
             <input type="number" id="sueldo" placeholder="Sueldo (USD)" step="1">
-            <input type="text" id="area" placeholder="Área">
-            <input type="text" id="rol" placeholder="Rol">
+            <select id="area" required aria-label="Área">
+                <option value="">Área</option>
+                <option value="Ventas">Ventas</option>
+                <option value="Administrativa">Administrativa</option>
+                <option value="Contable">Contable</option>
+                <option value="Legal">Legal</option>
+            </select>
+            <input type="text" id="rol" placeholder="Rol" required>
             <input type="text" id="ingreso" placeholder="Ingreso:AAAA-MM-DD">
         </div>
 
