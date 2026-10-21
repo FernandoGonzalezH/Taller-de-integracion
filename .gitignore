@@ -1,0 +1,23 @@
+# Configuración local y secretos
+.env
+.env.*
+!.env.example
+
+# Archivos temporales del sistema y del editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+deberes.txt
+
+# Respaldos locales de bases de datos
+/backups/
+/database/backups/
+*.bak
+*.dump
+
+# Dependencias y archivos generados
+vendor/
+node_modules/
+*.log
+*.sql.gz

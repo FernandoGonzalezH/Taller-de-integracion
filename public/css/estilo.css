@@ -1,0 +1,566 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+                url('../imagenes/fondo1.jpg');
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(0,0,0,0.6);
+            padding: 0 15px;
+            height: 100px;
+        }
+
+        .logo {
+            height: 90px;
+            cursor: pointer;
+        }
+
+        /* BOTONES NAV */
+        .menu button {
+            margin-left: 15px;
+            padding: 5px 15px;
+            border-radius: 10px;
+            border: 1px solid #999;
+            cursor: pointer;
+            color: #111;
+            font-weight: bold;
+
+            background: url('../imagenes/metal.avif');
+            background-size: cover;
+            background-position: center;
+
+            position: relative;
+            overflow: hidden;
+
+            box-shadow:
+                inset 0 2px 5px rgba(255,255,255,0.7),
+                inset 0 -3px 6px rgba(0,0,0,0.7),
+                0 3px 6px rgba(0,0,0,0.6);
+
+            transition: all 0.2s ease;
+        }
+
+        .menu button.btn-gold {
+            padding: 8px 20px;
+            border-color: #b89600;
+        }
+
+        .menu button.btn-ayuda {
+            color: #fff;
+            border-color: #555;
+            background: linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)), url('../imagenes/metal.avif') center / cover;
+        }
+
+        .menu button:hover { transform: scale(1.05); }
+        .menu button:active { transform: scale(0.97); }
+
+        .menu button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+            transform: skewX(-20deg);
+        }
+
+        .menu button:hover::after {
+            left: 120%;
+            transition: 0.6s;
+        }
+
+        /* CONTENIDO */
+        #contenido {
+            padding: 20px;
+        }
+
+        /* CARD */
+        .card {
+            background-color: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 10px;
+            width: 75%;
+            margin: auto;
+        }
+
+        /* TITULO */
+        .titulo-metal {
+            width: 65%;
+            margin: 20px auto;
+            text-align: center;
+
+            background:
+                linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('../imagenes/metal.avif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            padding: 10px;
+            border-radius: 8px;
+
+            font-size: 18px;
+            color: #f5f5f5;
+        }
+
+        /* HEADER BOTON */
+        .tabla-header {
+            width: 65%;
+            margin: 0 auto 15px auto;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* BOTON GOLD */
+        .btn-gold {
+            padding: 8px 20px;
+            border-radius: 10px;
+            border: 1px solid #b89600;
+            cursor: pointer;
+            font-weight: bold;
+
+            background: url('../imagenes/metal.avif');
+            background-size: cover;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* BOTONES METAL */
+        .acciones {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn-metal {
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid #999;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            color: #111;
+
+            background: url('../imagenes/metal.avif');
+            background-size: cover;
+
+            position: relative;
+            overflow: hidden;
+
+            box-shadow:
+                inset 0 2px 5px rgba(255,255,255,0.7),
+                inset 0 -3px 6px rgba(0,0,0,0.7),
+                0 3px 6px rgba(0,0,0,0.6);
+        }
+
+        .btn-metal:hover { transform: scale(1.05); }
+
+        .btn-metal::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+            transform: skewX(-20deg);
+        }
+
+        .btn-metal:hover::after {
+            left: 120%;
+            transition: 0.6s;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+        }
+
+        .modal-contenido {
+            background: rgba(0,0,0,0.9);
+            margin: 80px auto;
+            padding: 20px;
+            width: 400px;
+            border-radius: 10px;
+            text-align: center;
+            max-height: 80vh; /* 🔥 límite de altura */
+    overflow-y: auto; /* 🔥 scroll interno */
+        }
+
+        .modal-contenido p {
+            margin: 10px 0;
+        }
+
+        .btn-gold { 
+            padding: 8px 20px; 
+            border-radius: 10px; 
+            border: 1px solid #b89600; 
+            cursor: pointer; 
+            font-weight: bold; 
+            color: #3a2f00; 
+            background: url('../imagenes/metal.avif'); 
+            background-size: cover; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.7), 
+            inset 0 -3px 6px rgba(0,0,0,0.7), 0 4px 8px rgba(0,0,0,0.6); } 
+            
+            .btn-gold::before { 
+                content: ""; 
+                position: absolute; 
+                inset: 0; 
+                background: rgba(255, 215, 0, 0.35); 
+                mix-blend-mode: overlay; } 
+                
+                .btn-gold::after { 
+                    content: ""; 
+                    position: absolute; 
+                    top: 0; 
+                    left: -100%; 
+                    width: 60%; 
+                    height: 100%; 
+                    background: linear-gradient( 120deg, transparent, rgba(255,255,255,0.8), 
+                    transparent ); 
+                    transform: skewX(-20deg); } 
+                    
+                    .btn-gold:hover::after { 
+                        left: 120%; 
+                        transition: 0.6s; }
+
+        .tabla-header {
+    width: 65%;              /* mismo ancho que tabla y título */
+    margin: 0 auto 20px auto; /* centra el bloque */
+    display: flex;
+    justify-content: center; /* centra el botón */
+}
+    /* CONTENEDOR FILTROS */
+.filtros-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+/* CADA FILTRO */
+.filtro-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* LABEL */
+.filtro-item label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ddd;
+}
+
+/* SELECT METÁLICO */
+.filtro-item select {
+    padding: 6px 15px;
+    border-radius: 8px;
+    border: 1px solid #999;
+    cursor: pointer;
+
+    color: #111;
+    font-weight: bold;
+
+    background: url('../imagenes/metal.avif');
+    background-size: cover;
+
+    box-shadow:
+        inset 0 2px 5px rgba(255,255,255,0.7),
+        inset 0 -3px 6px rgba(0,0,0,0.7),
+        0 3px 6px rgba(0,0,0,0.6);
+
+    transition: all 0.2s ease;
+}
+
+/* HOVER */
+.filtro-item select:hover {
+    transform: scale(1.05);
+}
+
+/* CLICK */
+.filtro-item select:focus {
+    outline: none;
+    transform: scale(1.03);
+}
+
+body.modal-abierto {
+    overflow: hidden; /* 🔥 BLOQUEA SCROLL DEL FONDO */
+}
+
+body.modal-cerrado {
+    overflow: auto; /* 🔥 BLOQUEA SCROLL DEL FONDO */
+}
+
+/* GRID FORM */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* GRUPO */
+.form-grupo {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-nuevo-cliente {
+    align-self: flex-start;
+    width: fit-content;
+    margin-top: 12px;
+    padding: 3px 9px;
+    border-color: #444;
+    color: #f4f4f4;
+    background: linear-gradient(135deg, #555, #777 48%, #494949);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,.25), inset 0 -2px 4px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.55);
+}
+
+.etiqueta-metal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    align-self: center;
+    padding: 5px 9px;
+    font-size: 13px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    color: #111;
+    font-weight: bold;
+    background: url('../imagenes/metal.avif') center / cover;
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.7), inset 0 -3px 6px rgba(0,0,0,0.7), 0 3px 6px rgba(0,0,0,0.6);
+    cursor: pointer;
+}
+
+.etiqueta-metal input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    accent-color: #777;
+    filter: grayscale(1);
+    cursor: pointer;
+}
+
+/* INPUTS */
+.form-grid input,
+.form-grid select,
+.form-grupo select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #999;
+    font-weight: bold;
+    color: #111;
+
+    background: url('../imagenes/metal.avif');
+    background-size: cover;
+
+    box-shadow:
+        inset 0 2px 5px rgba(255,255,255,0.7),
+        inset 0 -3px 6px rgba(0,0,0,0.7),
+        0 3px 6px rgba(0,0,0,0.6);
+
+    transition: 0.2s;
+}
+
+/* HOVER */
+.form-grid input:hover,
+.form-grid select:hover,
+.form-grupo select:hover {
+    transform: scale(1.03);
+}
+
+/* FOCUS */
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grupo select:focus {
+    outline: none;
+    transform: scale(1.02);
+}
+
+
+/* BOTONES */
+.botones-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.modal-grande {
+    width: 700px;      /* 🔥 más ancho */
+    max-width: 90%;    /* responsive */
+}
+
+.tabla-informe {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.tabla-informe th,
+.tabla-informe td {
+    padding: 8px 10px;
+    border: 1px solid #999;
+    text-align: left;
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+}
+
+.tabla-informe-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.tabla-informe:not(.tabla-informe-detalle):not(.tabla-informe-vendedor) {
+    min-width: 480px;
+}
+
+.tabla-informe-vendedor {
+    min-width: 820px;
+}
+
+.ayuda-card {
+    width: 90%;
+    max-width: 1050px;
+}
+
+.ayuda-intro {
+    margin: 0 0 16px;
+    text-align: center;
+}
+
+.tabla-ayuda-wrap {
+    overflow-x: auto;
+}
+
+#tablaAyuda thead th {
+    text-align: left !important;
+}
+
+.tabla-ayuda {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.tabla-ayuda th,
+.tabla-ayuda td {
+    padding: 12px;
+    border: 1px solid rgba(210, 210, 210, 0.55);
+    text-align: left;
+    vertical-align: top;
+}
+
+.tabla-ayuda th {
+    background: url('../imagenes/metal.avif') center / cover;
+    color: #111;
+}
+
+.opciones-contenido {
+    width: min(560px, 92vw);
+    padding: 30px;
+}
+
+.opciones-contenido .form-grupo {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.opciones-contenido .form-grupo label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.opciones-contenido input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    color: #111;
+    font-weight: bold;
+    background: url('../imagenes/metal.avif') center / cover;
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.7), inset 0 -3px 6px rgba(0,0,0,0.7), 0 3px 6px rgba(0,0,0,0.6);
+}
+
+.opciones-pie {
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(210, 210, 210, 0.45);
+    text-align: center;
+}
+
+.opciones-cerrar {
+    min-width: 110px;
+    padding: 7px 18px;
+}
+
+.tabla-ayuda ol {
+    margin: 10px 0 0 22px;
+    padding: 0;
+}
+
+.tabla-ayuda li {
+    margin: 5px 0;
+}
+
+.tabla-ayuda [hidden] {
+    display: none !important;
+}
+
+.tabla-informe-empleados {
+    min-width: 1500px;
+}
+
+.tabla-informe-clientes {
+    min-width: 1100px;
+}
+
+.tabla-informe-detalle {
+    min-width: 760px;
+}
+
+.tabla-informe .numerico {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.tabla-informe .fecha {
+    text-align: center;
+    white-space: nowrap;
+}
+
+

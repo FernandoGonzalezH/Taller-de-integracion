@@ -1,0 +1,17 @@
+table.dataTable {
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    border-radius: 10px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    background-color: rgb(61, 59, 59);
+    color: white;
+    border: 1px solid gray;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    background-color: rgb(75, 72, 72);
+    color: white;
+}
+
