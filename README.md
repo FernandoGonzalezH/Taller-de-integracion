@@ -19,7 +19,7 @@ Sistema web de gestión para una concesionaria. Permite administrar vehículos, 
 
 Para desarrollo local, XAMPP es una alternativa que incluye Apache y MySQL/MariaDB. Con XAMPP, copiá el proyecto a `htdocs`, iniciá ambos servicios e importá los dos archivos desde phpMyAdmin. La configuración predeterminada (`127.0.0.1`, usuario `root`, contraseña vacía) funciona en una instalación local típica de XAMPP; otros entornos requieren sus propios valores.
 
-Los archivos SQL están separados: `database.sql` crea la estructura y `datos_ejemplo.sql` agrega los registros. Importá los datos después de crear las tablas y solo una vez en una base nueva. Los ejemplos excluyen a Fernando Gonzalez y Joaquín Rivero, sus ventas y los vehículos asociados; no incluyen la clave de acceso.
+Los archivos SQL están separados: `database.sql` crea la estructura y `datos_ejemplo.sql` agrega los registros. Importá los datos después de crear las tablas y solo una vez en una base nueva.
 
 ## Configuración de la base de datos
 
