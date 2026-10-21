@@ -21,8 +21,6 @@ Para desarrollo local, XAMPP es una alternativa que incluye Apache y MySQL/Maria
 
 Los archivos SQL están separados: `database.sql` crea la estructura y `datos_ejemplo.sql` agrega los registros. Importá los datos después de crear las tablas y solo una vez en una base nueva. Los ejemplos excluyen a Fernando Gonzalez y Joaquín Rivero, sus ventas y los vehículos asociados; no incluyen la clave de acceso.
 
-Si ya tenés una instalación anterior, hacé un respaldo de la base y ejecutá una sola vez [`migraciones/20261021_normalizar_marca_modelo.sql`](migraciones/20261021_normalizar_marca_modelo.sql) antes de usar esta versión. La migración conserva los vehículos y reemplaza sus columnas de texto `marca` y `modelo` por referencias a catálogos relacionados.
-
 ## Configuración de la base de datos
 
 La conexión se configura mediante variables de entorno:
